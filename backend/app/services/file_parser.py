@@ -23,7 +23,7 @@ async def parse_signal_file(file: UploadFile) -> SignalResponse:
     try:
         # --- 1. CSV / TXT Dynamic Detection ---
         if filename.endswith(('.csv', '.txt')):
-            df = pd.read_csv(file.file, sep=None, engine='python')
+            df = pd.read_csv(file.file)
             df = df.select_dtypes(include=[np.number])
             
             time_cols = [c for c in df.columns if 'time' in c.lower() or 'sec' in c.lower()]

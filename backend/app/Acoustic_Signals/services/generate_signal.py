@@ -5,7 +5,7 @@ from app.Acoustic_Signals.schemas.schema import GeneratedSignal
 def generate_signal(v, fs, duration, num_points_per_second):
     c = 343   # sound velocity    m/sec
     x_offset = 2 
-    t = np.linspace(- duration / 2 , duration / 2, num_points_per_second * duration)
+    t = np.linspace(- duration / 2 , duration / 2,int( num_points_per_second * duration))
 
     x = v * t
 

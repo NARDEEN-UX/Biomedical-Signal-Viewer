@@ -9,3 +9,5 @@ pyedflib>=0.1.32
 wfdb>=4.1.0
 pydantic>=1.10.0
 rarfile
+librosa
+pykalman

@@ -3,7 +3,7 @@ from app.Acoustic_Signals.schemas.schema import GenerationInput, GeneratedSignal
 from app.Acoustic_Signals.services.generate_signal import generate_signal
 from fastapi   import UploadFile, File
 from app.Acoustic_Signals.services.extract_coef import extract_coef
-
+from app.Acoustic_Signals.services.get_prediction import get_prediction
 
 acoustic_router = APIRouter()
 
@@ -23,3 +23,10 @@ async def GenerateDoppler(Input : GenerationInput ):
 async def ExtractCoef(file : UploadFile = File(...)):
        return   extract_coef(file)
     
+
+
+# 3 - endpoint for the AI model 
+
+@acoustic_router.post("/submarine_detection")
+async def GetPrediction(file : UploadFile = File(...)):
+      return get_prediction(file)

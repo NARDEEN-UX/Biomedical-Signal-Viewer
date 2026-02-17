@@ -1,7 +1,5 @@
 from pydantic import BaseModel, Field
 
-
-
 class GenerationInput(BaseModel):
     velocity: float = Field(..., description="Velocity of the source (m/s)")
     frequency: float = Field(..., gt=0, description="Source frequency (Hz)")
@@ -17,3 +15,11 @@ class Coef(BaseModel):
     velocity : float
     frequency : float 
     signal : list
+
+class AiPrediction(BaseModel):
+    signal : list 
+    ml_prediction : float
+    dl_prediction : float 
+    mixed_approach : float
+    label : str
+

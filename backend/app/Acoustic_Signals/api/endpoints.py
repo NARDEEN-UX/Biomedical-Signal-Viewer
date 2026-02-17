@@ -25,7 +25,7 @@ async def ExtractCoef(file : UploadFile = File(...)):
     
 
 
-# 3 - endpoint for the AI model 
+# 3 - endpoint for the AI models
 
 @acoustic_router.post("/submarine_detection")
 async def GetPrediction(file : UploadFile = File(...)):

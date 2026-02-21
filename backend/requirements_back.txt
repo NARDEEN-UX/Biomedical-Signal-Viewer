@@ -14,3 +14,4 @@ pykalman
 joblib
 onnxruntime
 xgboost==1.5.2
+statsmodels

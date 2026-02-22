@@ -1,10 +1,17 @@
-function STOCK() {
+import React from 'react';
+// Import the modular StockMarket wrapper we just built
+// Adjust the path based on where your 'pages' and 'components' folders are relative to each other
+import StockMarket from '../components/StockMarket/StockMarket';
+
+const Stock = () => {
   return (
-    <div className="page-container">
-      <h1>STOCK Data</h1>
-      <p>STOCK viewer content goes here.</p>
+    <div className="stock-page-container">
+      {/* This will render the header, the moving graph, 
+        and the two cards we created earlier.
+      */}
+      <StockMarket />
     </div>
   );
-}
+};
 
-export default STOCK;
+export default Stock;

@@ -58,16 +58,28 @@ a:hover {
 }
 
 /* --- 4. BODY LAYOUT --- */
+/* --- 4. BODY LAYOUT --- */
 body {
   margin: 0;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  /* I removed 'display: flex' and 'place-items: center' here. 
-     Why? Because for a dashboard, you want your Navbar at the top, 
-     not floating in the center of the screen! */
+  background-color: #0d3148;
+  
+  /* 🌟 THE SCROLLBAR KILLER */
+  overflow-x: hidden; 
 }
 
-h1 {
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0d3148;
+  width: 100%;
+  overflow-x: hidden;
+}/* Forces the root div to match the body */
+
+  h1 {
   font-size: 3.2em;
   line-height: 1.1;
   color: var(--blue-dark); /* Using your dark blue for headers */

@@ -33,6 +33,8 @@ Biomedical Signal Viewer unifies **acoustic, microbiome, market, EEG, and ECG wo
 
 ![Home Dashboard Screenshot](docs/media/screenshots/home-dashboard.png)
 
+🎬 **Watch Demo:** [Home Walkthrough](docs/media/videos/home-walkthrough.mp4)
+
 <video controls width="100%" src="docs/media/videos/home-walkthrough.mp4">
   Your browser does not support the video tag.
 </video>
@@ -77,6 +79,8 @@ Outputs: waveform visualization, estimated coefficients, ML/DL confidence, and f
 ![Doppler Simulation](docs/media/screenshots/acoustic-doppler-sim.png)
 ![Submarine Detection](docs/media/screenshots/acoustic-submarine-detection.png)
 
+🎬 **Watch Demo:** [Acoustic Demo](docs/media/videos/acoustic-demo.mp4)
+
 <video controls width="100%" src="docs/media/videos/acoustic-demo.mp4">
   Your browser does not support the video tag.
 </video>
@@ -93,6 +97,8 @@ Two quantitative dashboards:
 ![Market Intro](docs/media/screenshots/market-intro.png)
 ![Market Analysis](docs/media/screenshots/market-analysis.png)
 ![Market Comparison](docs/media/screenshots/market-compare.png)
+
+🎬 **Watch Demo:** [Market Demo](docs/media/videos/market-demo.mp4)
 
 <video controls width="100%" src="docs/media/videos/market-demo.mp4">
   Your browser does not support the video tag.
@@ -113,6 +119,8 @@ Core insights:
 ![Microbiome Dashboard](docs/media/screenshots/microbiome1.png)
 ![Microbiome Clinical Panel](docs/media/screenshots/microbiome-clinical.png)
 
+🎬 **Watch Demo:** [Microbiome Demo](docs/media/videos/microbiome-demo.mp4)
+
 <video controls width="100%" src="docs/media/videos/microbiome-demo.mp4">
   Your browser does not support the video tag.
 </video>
@@ -125,6 +133,8 @@ Core insights:
 
 ![EEG Page](docs/media/screenshots/eeg-page.png)
 
+🎬 **Watch Demo:** [EEG Demo](docs/media/videos/eeg-demo.mp4)
+
 <video controls width="100%" src="docs/media/videos/eeg-demo.mp4">
   Your browser does not support the video tag.
 </video>
@@ -135,6 +145,8 @@ Core insights:
 - Dedicated backend ECG pipeline is not connected yet.
 
 ![ECG Page](docs/media/screenshots/ecg-page.png)
+
+🎬 **Watch Demo:** [ECG Demo](docs/media/videos/ecg-demo.mp4)
 
 <video controls width="100%" src="docs/media/videos/ecg-demo.mp4">
   Your browser does not support the video tag.

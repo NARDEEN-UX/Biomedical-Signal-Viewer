@@ -1,41 +1,29 @@
-# Video Gallery Placeholders
+# Video Gallery
 
-Drop each `.mp4` in this folder using the names below. These embeds will become playable automatically.
+Drop each `.mp4` in this folder using the names below, then open them via these section links.
 
 ## Home
 
-<video controls width="100%" src="home-walkthrough.mp4">
-	Your browser does not support the video tag.
-</video>
+- [Home Walkthrough](home-walkthrough.mp4)
 
 ## Acoustic
 
-<video controls width="100%" src="acoustic-demo.mp4">
-	Your browser does not support the video tag.
-</video>
+- [Acoustic Demo](acoustic-demo.mp4)
 
 ## Market
 
-<video controls width="100%" src="market-demo.mp4">
-	Your browser does not support the video tag.
-</video>
+- [Market Demo](market-demo.mp4)
 
 ## Microbiome
 
-<video controls width="100%" src="microbiome-demo.mp4">
-	Your browser does not support the video tag.
-</video>
+- [Microbiome Demo](microbiome-demo.mp4)
 
 ## EEG
 
-<video controls width="100%" src="eeg-demo.mp4">
-	Your browser does not support the video tag.
-</video>
+- [EEG Demo](eeg-demo.mp4)
 
 ## ECG
 
-<video controls width="100%" src="ecg-demo.mp4">
-	Your browser does not support the video tag.
-</video>
+- [ECG Demo](ecg-demo.mp4)
 
 Tip: keep each clip around 30–90 seconds and focus on one workflow per video.

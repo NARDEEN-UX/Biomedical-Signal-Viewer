@@ -1,6 +1,4 @@
 from fastapi import APIRouter, UploadFile, File, Query
-from typing import List
-
 # Import your classes and schemas
 from app.Market.services.analyzer import MarketAnalyzer
 from app.Market.services.compare import Compare2Comapnies

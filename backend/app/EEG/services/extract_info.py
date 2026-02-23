@@ -65,6 +65,14 @@ class FeatureExtractor:
         channels = filtered_df.columns.tolist()
         num_channels = len(channels)
         num_samples = len(filtered_df)
+        duration = num_samples/ self.fs
+        
+        metadata = {
+            "num_channels": num_channels,
+            "channels": channels,
+            "num_samples": num_samples,
+            "duration" : duration,
+        }
 
         # Apply optional downsampling
         if self.downsample_factor > 1:
@@ -80,14 +88,15 @@ class FeatureExtractor:
                 for ch in channels
             }
 
-        # Duration in seconds
-        duration = num_samples / self.fs
+        # # Duration in seconds
+        # duration = num_samples / self.fs
 
-        return {
-            "num_channels": num_channels,
-            "channels": channels,
-            "num_samples": num_samples,
-            "duration": duration,
-            "time": time,
-            "signals": signals
-        }
+        # return {
+        #     "num_channels": num_channels,
+        #     "channels": channels,
+        #     "num_samples": num_samples,
+        #     "duration": duration,
+        #     "time": time,
+        #     "signals": signals
+        # }
+        return metadata, time, signals

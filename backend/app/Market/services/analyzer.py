@@ -1,13 +1,17 @@
-import pandas as pd 
-import numpy as np 
-from statsmodels.tsa.arima.model import ARIMA
-import warnings
+import os
+import joblib
+import numpy as np
+import pandas as pd
+from fastapi import HTTPException, status
+import onnxruntime as rt
 from fastapi import HTTPException, status, UploadFile
 
-# Ignore statsmodels convergence warnings to keep your server logs clean
-warnings.filterwarnings("ignore")
-
 class MarketAnalyzer:
+    def __init__(self):
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.scaler = os.path.join(base_path, 'ai', 'universal_scalers.save')
+        self.lstm_model = os.path.join(base_path, 'ai', 'universal_lstm.onnx')
+
     def _clean(self, file: UploadFile):
         if not (file.filename.endswith(".csv") or file.filename.endswith(".tsv")):
             raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Only CSV or TSV files allowed")
@@ -54,14 +58,56 @@ class MarketAnalyzer:
         Annualized_Volatility = std_20 * np.sqrt(252)
         return self._replace_nan(Annualized_Volatility)
         
-    def get_prediction(self, close_price, steps):
-        model = ARIMA(close_price.dropna(), order=(5, 1, 0))
-        fitted_model = model.fit()
-        forecast = fitted_model.forecast(steps=steps)
-        last_date = close_price.index[-1]
-        future_dates = [(last_date + pd.Timedelta(days=i)).strftime('%Y-%m-%d') for i in range(1, steps + 1)]
-        return future_dates, forecast.tolist()
-        
+    def get_prediction(self, close_price: pd.Series, steps: int):
+            LOOKBACK = 60
+
+            if not os.path.exists(self.scaler) or not os.path.exists(self.lstm_model):
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Model or scaler file not found"
+                )
+
+            scaler = joblib.load(self.scaler)["AAPL"]
+            close_series = close_price.dropna().values.reshape(-1, 1)
+
+            if len(close_series) < LOOKBACK:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Not enough data. Minimum required: {LOOKBACK}"
+                )
+
+            scaled_data = scaler.transform(close_series)
+
+            # Take last window
+            current_sequence = scaled_data[-LOOKBACK:].reshape(1, LOOKBACK, 1)
+
+            # Load ONNX model
+            sess = rt.InferenceSession(self.lstm_model)
+            input_name = sess.get_inputs()[0].name
+
+            predictions = []
+
+            # Recursive prediction
+            for _ in range(steps):
+                next_pred = sess.run(None, {input_name: current_sequence.astype(np.float32)})[0]
+                predictions.append(next_pred[0][0])
+
+                next_pred_reshaped = next_pred.reshape(1, 1, 1)
+                current_sequence = np.concatenate(
+                    (current_sequence[:, 1:, :], next_pred_reshaped),
+                    axis=1
+                )
+
+            predictions = np.array(predictions).reshape(-1, 1)
+            predictions_real = scaler.inverse_transform(predictions).flatten()
+
+            last_date = close_price.index[-1]
+            future_dates = [
+                (last_date + pd.Timedelta(days=i)).strftime('%Y-%m-%d')
+                for i in range(1, steps + 1)
+            ]
+
+            return future_dates, predictions_real.tolist()
     def do_analysis(self, file: UploadFile, ma_window: int, pred_steps: int):
         df = self._clean(file)
         time_axis = df.index.strftime('%Y-%m-%d').tolist()

@@ -9,8 +9,8 @@ from fastapi import HTTPException, status, UploadFile
 class MarketAnalyzer:
     def __init__(self):
         base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self.scaler = os.path.join(base_path, 'ai', 'universal_scalers.save')
-        self.lstm_model = os.path.join(base_path, 'ai', 'universal_lstm.onnx')
+        self.scaler = os.path.join(base_path, 'notebook', 'universal_scalers.save')
+        self.lstm_model = os.path.join(base_path, 'notebook', 'universal_lstm.onnx')
 
     def _clean(self, file: UploadFile):
         if not (file.filename.endswith(".csv") or file.filename.endswith(".tsv")):

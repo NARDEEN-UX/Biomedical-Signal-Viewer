@@ -1,0 +1,234 @@
+/* --- COLOR PALETTE --- */
+:root {
+  --blue-light: #e8f1f6;
+  --blue-light-hover: #dde9f1;
+  --blue-light-active: #b9d2e2;
+
+  --blue-normal: #1c6ea0;
+  --blue-normal-hover: #196390;
+  --blue-normal-active: #165880;
+
+  --blue-dark: #155378;
+  --blue-dark-hover: #114260;
+  --blue-dark-active: #0d3148;
+  --blue-darker: #0a2738;
+}
+
+/* Container takes up the full screen */
+.eeg-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--blue-darker) 0%, var(--blue-dark-active) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.eeg-intro-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Changed from height to min-height so it doesn't clip */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px; /* Added padding to protect top and bottom elements */
+  box-sizing: border-box;
+}
+
+/* Push the background to the back */
+.skull-3d-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Pull the text and cards to the front */
+.eeg-intro-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none; /* Let clicks pass through empty space */
+  width: 100%;
+  max-width: 1300px; /* Widened to accommodate larger cards */
+}
+
+.eeg-title {
+  pointer-events: auto; /* Makes it visible/selectable */
+  color: var(--blue-light);
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 15px rgba(10, 39, 56, 0.8);
+}
+
+.eeg-subtitle {
+  pointer-events: auto;
+  color: var(--blue-light-active);
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+
+/* --- HORIZONTAL CARDS LAYOUT --- */
+.eeg-cards-row {
+  pointer-events: auto; /* Required for hover effects */
+  display: flex;
+  flex-direction: row; /* Forces horizontal x-axis */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 60px;
+  gap: 10px; /* Adds space between cards and lines */
+}
+
+.eeg-feature-card {
+  background: rgba(13, 49, 72, 0.85);
+  border: 1px solid var(--blue-normal);
+  padding: 25px; /* Increased padding */
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  color: var(--blue-light);
+  width: 260px; /* Increased width from 220px */
+  min-height: 170px; /* Increased min-height from 150px */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 2; /* Keeps card above the line */
+}
+
+/* Hover Effect */
+.eeg-feature-card:hover {
+  transform: translateY(-10px) scale(1.05); /* Lifts up and grows slightly */
+  border-color: var(--blue-light-active);
+  box-shadow: 0 10px 25px rgba(28, 110, 160, 0.6);
+  background: rgba(21, 83, 120, 0.95);
+  cursor: pointer;
+}
+
+.eeg-feature-card h3 {
+  color: var(--blue-light-hover);
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem; /* Slightly larger text to match larger card */
+}
+
+.eeg-feature-card p {
+  font-size: 0.95rem; /* Slightly larger text to match larger card */
+  color: var(--blue-light-active);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- THE CONNECTING LINES --- */
+.connecting-line {
+  width: 40px; /* Increased width from 30px to give larger cards space */
+  height: 3px;
+  background-color: var(--blue-normal);
+  box-shadow: 0 0 8px var(--blue-normal);
+  z-index: 1;
+}
+
+/* --- LAUNCH BUTTON --- */
+.eeg-launch-btn {
+  pointer-events: auto; /* Required to make it clickable! */
+  background: var(--blue-normal);
+  color: var(--blue-light);
+  border: none;
+  padding: 15px 45px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(28, 110, 160, 0.5);
+  transition: all 0.3s ease;
+}
+
+.eeg-launch-btn:hover:not(:disabled) {
+  background: var(--blue-normal-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(28, 110, 160, 0.8);
+  color: #fff;
+}
+
+/* Loading state for when file is uploading */
+.eeg-launch-btn:disabled {
+  background: var(--blue-dark);
+  color: var(--blue-light-active);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: scale(1);
+  animation: pulse 1.5s infinite alternate;
+}
+
+/* Simple animation for the uploading state */
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; box-shadow: 0 0 15px var(--blue-normal); }
+}
+
+/* --- DASHBOARD LAYOUT & VIEWERS --- */
+.eeg-dashboard-layout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.eeg-viewers-container {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eeg-viewer-content {
+  margin-top: 20px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.eeg-viewer-content h2 {
+  color: var(--blue-light);
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 8px rgba(10, 39, 56, 0.8);
+}
+
+.eeg-viewer-content p {
+  color: var(--blue-light-active);
+  font-size: 1.1rem;
+}
+
+/* Back Button */
+.eeg-back-btn {
+  margin-top: 60px;
+  padding: 12px 25px;
+  background: var(--blue-normal);
+  color: var(--blue-light);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.eeg-back-btn:hover {
+  background: var(--blue-normal-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(28, 110, 160, 0.4);
+}
+
+/* Simple fade-in animation for switching tabs */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

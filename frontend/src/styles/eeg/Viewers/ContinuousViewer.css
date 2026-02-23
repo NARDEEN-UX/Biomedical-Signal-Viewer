@@ -1,0 +1,243 @@
+/* Container Layout */
+.continuous-viewer-layout {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 120px); /* Fill screen minus navbar */
+  background: var(--blue-darker);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Left Area: Controls + Graph */
+.viewer-main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex blowout */
+}
+
+/* --- TOP CONTROL PANEL --- */
+.top-control-panel {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: nowrap; /* Forces everything strictly onto 1 horizontal line */
+  justify-content: center; /* Centers the buttons horizontally */
+  align-items: center;
+  gap: 12px; /* Space between each individual button */
+  padding: 10px 20px;
+  background: rgba(13, 49, 72, 0.8);
+  border-bottom: 1px solid var(--blue-dark);
+  overflow-x: auto; /* Allows horizontal scrolling if the screen is too small */
+  white-space: nowrap; /* Prevents text inside buttons from breaking */
+}
+
+.ctrl-btn {
+  background: var(--blue-dark);
+  color: var(--blue-light);
+  border: 1px solid var(--blue-normal);
+  padding: 6px 14px; /* Slightly leaner padding */
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.ctrl-btn:hover {
+  background: var(--blue-normal);
+}
+
+.ctrl-btn.active-play {
+  background: #2e7d32;
+  border-color: #4caf50;
+}
+
+.ctrl-btn.active-mode {
+  background: var(--blue-normal);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+}
+
+.ctrl-select {
+  background: var(--blue-dark);
+  color: var(--blue-light);
+  border: 1px solid var(--blue-normal);
+  padding: 6px 10px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* --- BOTTOM SLIDER PANEL --- */
+.bottom-slider-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  padding: 6px 20px; /* Extremely minimal vertical padding for less height */
+  background: rgba(13, 49, 72, 0.8);
+  border-top: 1px solid var(--blue-dark);
+}
+
+.slider-label {
+  color: var(--blue-light);
+  font-size: 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
+  margin: 0; 
+}
+
+.time-slider {
+  flex: 1; /* Slider fills the remaining width */
+  cursor: pointer;
+  accent-color: var(--blue-normal);
+  margin: 0;
+}
+
+/* --- GRAPH VIEWPORT --- */
+.graph-viewport {
+  flex: 1;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.multiple-viewers-container {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-right: 10px;
+}
+
+.multiple-viewers-container::-webkit-scrollbar {
+  width: 8px;
+}
+.multiple-viewers-container::-webkit-scrollbar-thumb {
+  background: var(--blue-normal);
+  border-radius: 4px;
+}
+
+.small-viewer {
+  background: rgba(10, 39, 56, 0.5);
+  border-radius: 8px;
+  border: 1px solid var(--blue-dark);
+  position: relative;
+}
+
+.small-viewer-title {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  margin: 0;
+  color: var(--blue-light);
+  font-size: 0.9rem;
+  z-index: 10;
+  background: rgba(10, 39, 56, 0.8);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* --- RIGHT SETTINGS PANEL --- */
+.right-settings-panel {
+  width: 280px;
+  background: rgba(10, 39, 56, 0.95);
+  border-left: 1px solid var(--blue-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  padding: 15px 20px;
+  margin: 0;
+  color: var(--blue-light);
+  border-bottom: 1px solid var(--blue-dark);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.master-toggle-container {
+  padding: 15px;
+  border-bottom: 1px solid var(--blue-dark);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.master-toggle {
+  color: #4caf50;
+  font-size: 1.05rem;
+}
+
+.channels-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.channels-list::-webkit-scrollbar {
+  width: 6px;
+}
+.channels-list::-webkit-scrollbar-thumb {
+  background: var(--blue-dark);
+  border-radius: 3px;
+}
+
+.channel-card {
+  background: var(--blue-darker);
+  border: 1px solid var(--blue-dark);
+  border-radius: 8px;
+  padding: 12px;
+  transition: opacity 0.2s;
+}
+
+.channel-card.dimmed {
+  opacity: 0.5;
+}
+
+.channel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ch-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blue-light);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.channel-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--blue-dark);
+}
+
+.ctrl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--blue-light-active);
+  font-size: 0.85rem;
+}
+
+input[type="color"] {
+  border: none;
+  width: 30px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+input[type="range"] {
+  width: 100px;
+  cursor: pointer;
+}

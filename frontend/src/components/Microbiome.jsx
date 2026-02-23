@@ -8,7 +8,7 @@ import './microbiome.css';
 
 const API_URL = "http://127.0.0.1:8000";
 
-const CHART_COLORS = ["#1c6ea0", "#4685ac", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#f43f5e", "#eab308", "#64748b"];
+const CHART_COLORS = ["#1c6ea0", "#4685ac", "#22559d", "#d7b985", "#8271a9", "#ec4899", "#f43f5e", "#eab308", "#64748b"];
 
 const Microbiome = () => {
   const [file, setFile] = useState(null);
@@ -292,13 +292,13 @@ const Microbiome = () => {
                 className={`metric-card`}
                 style={{ 
                   cursor: 'pointer', flex: '1 1 300px', 
-                  border: activeCard === 'visualization' ? '2px solid #06b6d4' : '1px solid var(--blue-dark-hover)', 
-                  background: activeCard === 'visualization' ? 'var(--blue-dark-active)' : 'transparent',
+                  border: activeCard === 'visualization' ? '2px solid #e7f7fa' : '2px solid var(--blue-dark-hover)', 
+                  background: activeCard === 'visualization' ? '#09283b' :  'var(--blue-dark-active)',
                   textAlign: 'center', padding: '20px'
                 }}
                 onClick={() => setActiveCard('visualization')}
               >
-                <h3 style={{ margin: 0, color: '#06b6d4' }}>Visualization and Analysis</h3>
+                <h3 style={{ margin: 0, color: '#c9d7df' }}>Visualization and Analysis</h3>
                 <p style={{ margin: '8px 0 0 0', fontSize: '0.9rem', color: 'var(--blue-light)' }}>
                   View composition, inflammation timelines, and bacterial summation graphs.
                 </p>
@@ -308,13 +308,13 @@ const Microbiome = () => {
                 className={`metric-card`}
                 style={{ 
                   cursor: 'pointer', flex: '1 1 300px', 
-                  border: activeCard === 'clinical' ? '2px solid #10b981' : '1px solid var(--blue-dark-hover)', 
-                  background: activeCard === 'clinical' ? 'var(--blue-dark-active)' : 'transparent',
+                  border: activeCard === 'clinical' ? '2px solid #e7f7fa' : '1px solid var(--blue-dark-hover)', 
+                  background: activeCard === 'clinical' ? '#09283b' : 'var(--blue-dark-active)',
                   textAlign: 'center', padding: '20px'
                 }}
                 onClick={() => setActiveCard('clinical')}
               >
-                <h3 style={{ margin: 0, color: '#10b981' }}>Clinical Summary & Panel</h3>
+                <h3 style={{ margin: 0, color: '#c9d7df' }}>Clinical Summary & Panel</h3>
                 <p style={{ margin: '8px 0 0 0', fontSize: '0.9rem', color: 'var(--blue-light)' }}>
                   View Health Index, Fecal Calprotectin, Shannon Index, and automated clinical summaries.
                 </p>
@@ -654,9 +654,13 @@ const Microbiome = () => {
                             <XAxis type="number" dataKey="x" name="PCA 1" stroke="var(--blue-light-active)" />
                             <YAxis type="number" dataKey="y" name="PCA 2" stroke="var(--blue-light-active)" />
                             <Tooltip cursor={{strokeDasharray: '3 3'}} contentStyle={{ backgroundColor: 'var(--blue-darker)', borderColor: 'var(--blue-dark-hover)', color: 'var(--blue-light)' }} />
-                            <Scatter name="Patient Trajectory" data={scatterData} fill="var(--blue-normal)">
-                              {pcaPath && <Line type="monotone" dataKey="y" stroke="var(--blue-normal)" strokeWidth={2} />}
-                            </Scatter>
+                            <Scatter 
+                              name="Patient Trajectory" 
+                              data={scatterData} 
+                              fill="var(--blue-normal)"
+                              /* 🌟 THE FIX: We use the built-in 'line' property instead of a nested <Line /> tag */
+                              line={pcaPath ? { stroke: 'var(--blue-normal)', strokeWidth: 2 } : false}
+                            />
                           </ScatterChart>
                         </ResponsiveContainer>
                       </div>

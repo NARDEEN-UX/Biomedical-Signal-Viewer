@@ -1,0 +1,162 @@
+/* --- Main Container --- */
+.compare-full-width-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* --- Dashboard Header (Forces Title Left, Back Button Right) --- */
+.compare-dashboard-header {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  margin-bottom: 15px; /* Slightly reduced from 20px */
+}
+
+.compare-dashboard-header h2 {
+  color: #e7f7fa;
+  margin: 0 0 5px 0;
+}
+
+.compare-dashboard-header p {
+  color: #82a8c2;
+  margin: 0;
+}
+
+.compare-back-btn {
+  background: transparent;
+  color: #82a8c2;
+  border: 1px solid #1c6ea0;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; 
+  transition: background 0.3s, color 0.3s;
+}
+
+.compare-back-btn:hover {
+  background: #1c6ea0;
+  color: #fff;
+}
+
+/* --- Form Panel Styles (Vertical Full-Width Layout) --- */
+.compare-panel {
+  display: flex;
+  flex-direction: column; 
+  align-items: stretch; 
+  gap: 10px; /* 🌟 FIX: Reduced from 20px to bring fields closer together */
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px; /* Slightly reduced inner padding */
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+/* --- Input Groups --- */
+.compare-input-group {
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+  gap: 4px; /* 🌟 FIX: Reduced from 8px to bring the label closer to its input */
+}
+
+.compare-input-group label {
+  color: #e7f7fa;
+  font-size: 14px;
+}
+
+.compare-input-group input {
+  width: 100%;
+  height: 40px; /* Just slightly slimmer */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #1c6ea0;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* --- Button Group (At the bottom of the form) --- */
+.compare-button-group {
+  display: flex;
+  flex-direction: row; 
+  width: 100%; 
+  gap: 15px;
+  margin-top: 5px; /* Reduced to pull buttons up closer to the last input */
+}
+
+.compare-action-btn {
+  flex: 2; 
+  height: 42px; 
+  background-color: #2e528b; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.compare-action-btn:hover {
+  background-color: #3a6ba8;
+}
+
+.compare-action-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.compare-cancel-btn {
+  flex: 1; 
+  height: 42px; 
+  background-color: #390303; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.compare-cancel-btn:hover {
+  background-color: #5a0505;
+}
+
+/* --- Status Messages --- */
+.compare-status-message {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  width: 100%;
+}
+/* --- Graph Containers & Controls --- */
+.compare-graph-header-with-controls {
+  display: flex;
+  flex-direction: row; /* Changed from column to row */
+  justify-content: space-between; /* Pushes title left, controls right */
+  align-items: center; /* Keeps them vertically centered with each other */
+  margin-bottom: 15px;
+}
+
+.compare-graph-title {
+  color: #e7f7fa;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.compare-chart-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  /* Add a little margin right if you want it perfectly flush with the plotly buttons */
+  margin-right: 10px; 
+}

@@ -1,0 +1,153 @@
+/* --- Main Card Styles --- /
+/ --- Main Card Styles --- / */
+.action-card {
+flex: 1 1 0%; 
+min-width: 0; 
+background: rgba(9, 40, 59, 0.6);
+border: 1px solid #155378;
+border-radius: 8px;
+padding: 1.5rem;
+display: flex;
+flex-direction: column;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.action-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 24px rgba(28, 110, 160, 0.2);
+}
+.action-card h3 {
+color: #e7f7fa;
+margin: 0 0 0.5rem 0;
+}
+.action-card p {
+color: #82a8c2;
+font-size: 0.9rem;
+line-height: 1.5;
+flex-grow: 1;
+}
+/* --- Form Panel Styles --- */
+.analysis-panel {
+margin-top: 1.5rem;
+padding: 1rem;
+background: rgba(0, 0, 0, 0.2);
+border-radius: 6px;
+border: 1px solid #1c6ea0;
+}
+.input-group {
+display: flex;
+flex-direction: column;
+margin-bottom: 1rem;
+gap: 0.25rem;
+color: #e7f7fa;
+}
+.input-group input {
+padding: 0.5rem;
+background: rgba(255, 255, 255, 0.1);
+border: 1px solid #1c6ea0;
+border-radius: 4px;
+color: white;
+}
+/* --- Button Styles --- */
+.main-btn {
+width: 100%;
+padding: 0.75rem;
+background: #1c6ea0;
+color: #fff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 1rem;
+font-weight: bold;
+transition: background 0.2s;
+}
+.main-btn:hover {
+background: #22559d;
+}
+.button-group {
+display: flex;
+gap: 1rem;
+margin-top: 1rem;
+}
+.action-btn {
+flex: 2;
+padding: 0.5rem;
+background: #2e528b;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-weight: bold;
+}
+.cancel-btn {
+flex: 1;
+padding: 0.5rem;
+background: #390303;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-weight: bold;
+}
+.status-message {
+margin-top: 1rem;
+font-size: 0.9rem;
+font-weight: bold;
+text-align: center;
+color: #4ade80; /* Success green */
+}
+/* --- Graph Container --- */
+.graphs-container {
+margin-top: 2rem;
+width: 100%;
+background: rgba(0, 0, 0, 0.3);
+border-radius: 8px;
+padding: 1rem;
+border: 1px solid #155378;
+}
+.full-width-analysis-container {
+width: 100%;
+box-sizing: border-box;
+}
+.analysis-dashboard-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+.analysis-back-btn {
+background: transparent;
+color: #82a8c2;
+border: 1px solid #1c6ea0;
+padding: 8px 16px;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+.analysis-back-btn:hover {
+background: #1c6ea0;
+color: #fff;
+}
+.error-text { color: #ef5350; }
+.success-text { color: #4ade80; }
+.graph-title {
+color: #e7f7fa;
+margin-bottom: 1rem;
+margin-top: 2rem;
+}
+.graph-header-with-controls {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.checkbox-label {
+color: #e7f7fa;
+font-size: 14px;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.plotly-graph {
+width: 100%;
+height: 500px;
+}

@@ -24,10 +24,13 @@ async def get_market(
 # 2 - Endpoint for comparing two companies
 @market_router.post('/compare', response_model=ComparisonOutput)
 async def compare_markets(
-    files: List[UploadFile] = File(...),
+    file1: UploadFile = File(..., description="First company CSV"), 
+    file2: UploadFile = File(..., description="Second company CSV"),
+
     ma_short: int = Query(50, description="Short Moving Average (e.g., 50)"),
     ma_long: int = Query(200, description="Long Moving Average (e.g., 200)"),
     season_period: int = Query(30, description="Seasonality period (e.g., 30 for monthly)")
 ):
+    files = [file1, file2]
     results = comparator.compare(files, ma_short=ma_short, ma_long=ma_long, season_period=season_period)
     return results

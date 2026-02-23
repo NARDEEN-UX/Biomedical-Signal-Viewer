@@ -1,0 +1,42 @@
+.stock-market-wrapper {
+  /* 🌟 1. Layout & Sizing */
+  width: 100%;
+  
+  /* 🌟 THE FIX: Force it to be at least the height of the screen */
+  min-height: 100vh; 
+  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2rem;
+
+  /* 🌟 2. The Magic Gradient Fix */
+  background: linear-gradient(to bottom, #03141f, #3a6580);
+  background-attachment: fixed; 
+  background-size: cover;       
+  background-repeat: no-repeat; 
+
+  color: #c9d7df; 
+  
+  /* 🌟 3. Flexbox to align contents properly */
+  display: flex;
+  flex-direction: column;
+}
+
+.stock-header h1 {
+  color: #e7f7fa;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  
+}
+
+.stock-header p {
+  color: #82a8c2;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.stock-dashboard-content {
+  margin-top: 3rem;
+  /* Future grid layouts for real charts go here */
+}

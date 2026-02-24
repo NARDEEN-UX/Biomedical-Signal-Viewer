@@ -29,6 +29,7 @@ app.include_router(acoustic_router)
 app.include_router(microbiome_rouuter)
 app.include_router(market_router)
 app.include_router(EEG_Router)
+# app.include_router(ecg_router, prefix="/ecg")
 @app.get("/")
 def health_check():
     return {"status": "Biomedical API is running"}

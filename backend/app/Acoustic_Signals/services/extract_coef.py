@@ -3,7 +3,6 @@ import librosa as lb
 import scipy.signal as signal
 from fastapi import UploadFile, File, HTTPException, status
 from app.Acoustic_Signals.schemas.schema import Coef
-from scipy.ndimage import median_filter
 
 def extract_coef(file: UploadFile = File(...)):
     c = 343  # speed of sound (m/s)

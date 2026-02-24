@@ -4,6 +4,7 @@ from app.Acoustic_Signals.api.endpoints import acoustic_router
 from app.MicroBiome.api.endpoint import microbiome_rouuter
 from app.Market.api.endpoints import market_router
 from app.EEG.api.endpoint import EEG_Router
+from app.ECG.api.router import router as ECG_Router
 app = FastAPI(title="Biomedical Signal Viewer API")
 
 # --- CHANGE 1: Add specific IP addresses ---
@@ -29,7 +30,7 @@ app.include_router(acoustic_router)
 app.include_router(microbiome_rouuter)
 app.include_router(market_router)
 app.include_router(EEG_Router)
-# app.include_router(ecg_router, prefix="/ecg")
+app.include_router(ECG_Router)
 @app.get("/")
 def health_check():
     return {"status": "Biomedical API is running"}

@@ -1,0 +1,74 @@
+.eeg-dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 39, 56, 0.95);
+  padding: 15px 40px;
+  border-bottom: 2px solid var(--blue-normal, #1c6ea0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Grouping the back button and the title */
+.eeg-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between back button and title */
+}
+
+/* Styling the new Back button */
+.eeg-nav-back-btn {
+  background: rgba(28, 110, 160, 0.2);
+  color: #dde9f1;
+  border: 1px solid var(--blue-normal, #1c6ea0);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.eeg-nav-back-btn:hover {
+  background: var(--blue-normal, #1c6ea0);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(28, 110, 160, 0.5);
+}
+
+.eeg-nav-brand h2 {
+  color: #e8f1f6;
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: 0 2px 8px rgba(28, 110, 160, 0.5);
+}
+
+.eeg-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.eeg-nav-btn {
+  background: transparent;
+  color: #b9d2e2;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.eeg-nav-btn:hover {
+  background: rgba(28, 110, 160, 0.2);
+  color: #dde9f1;
+}
+
+.eeg-nav-btn.active {
+  background: #1c6ea0;
+  color: #ffffff;
+  border-color: #196390;
+  box-shadow: 0 0 15px rgba(28, 110, 160, 0.6);
+}

@@ -12,6 +12,8 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1:3000",  # <--- CRITICAL: Browsers treat this differently from localhost
     "http://127.0.0.1:5173",
+    "http://127.0.0.1:8000",  # <--- ADD THIS LINE so Swagger UI works
+    "http://localhost:8000",  # <--- ADD THIS LINE just in case
 ]
 
 # --- CHANGE 2: Use the variable 'origins' ---

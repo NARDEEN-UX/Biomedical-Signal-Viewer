@@ -24,6 +24,11 @@ export default function ECG() {
   const [predictLoading, setPredictLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState("pretrained");
 
+  const handleModelChange = (model) => {
+    setSelectedModel(model);
+    setPrediction(null);
+  };
+
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -60,7 +65,8 @@ export default function ECG() {
       setPrediction(res.data.prediction);
     } catch (err) {
       console.error("Prediction error:", err);
-      alert("Prediction failed. Please try again.");
+      const detail = err?.response?.data?.detail;
+      alert(detail || "Prediction failed. Please try again.");
     } finally {
       setPredictLoading(false);
     }
@@ -96,7 +102,7 @@ export default function ECG() {
           <div
             className={`model-card ${selectedModel === "pretrained" ? "active" : ""}`}
             onClick={() => {
-              setSelectedModel("pretrained");
+              handleModelChange("pretrained");
               scrollToSection("upload-section");
             }}
           >
@@ -119,7 +125,7 @@ export default function ECG() {
           <div
             className={`model-card ${selectedModel === "classical" ? "active" : ""}`}
             onClick={() => {
-              setSelectedModel("classical");
+              handleModelChange("classical");
               scrollToSection("upload-section");
             }}
           >
@@ -200,13 +206,13 @@ export default function ECG() {
         <div className="model-buttons">
           <button
             className={`model-select-btn ${selectedModel === "pretrained" ? "active" : ""}`}
-            onClick={() => setSelectedModel("pretrained")}
+            onClick={() => handleModelChange("pretrained")}
           >
             Pretrained Model
           </button>
           <button
             className={`model-select-btn ${selectedModel === "classical" ? "active" : ""}`}
-            onClick={() => setSelectedModel("classical")}
+            onClick={() => handleModelChange("classical")}
           >
             Classical Model
           </button>

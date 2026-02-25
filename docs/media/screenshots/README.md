@@ -9,7 +9,7 @@ Add screenshots referenced by the root README:
 - `market-intro.png`
 - `market-analysis.png`
 - `market-compare.png`
-- `microbiome-dashboard.png`
+- `microbiome1.png`
 - `microbiome-clinical.png`
 - `eeg-page.png`
 - `ecg-page.png`

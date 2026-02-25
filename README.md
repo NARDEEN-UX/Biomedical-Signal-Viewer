@@ -12,6 +12,10 @@ Biomedical Signal Viewer unifies **acoustic, microbiome, market, EEG, and ECG wo
 - 🎛️ **Frontend:** React + Vite
 - ⚡ **Backend:** FastAPI + modular services
 - 📊 **Visualization:** Plotly + Recharts
+- EEG page is now an interactive dashboard (intro, launch flow, multi-view visualizers, AI result banner)
+- ECG page is now fully interactive with upload, viewer sections, and dual-model diagnosis flow
+- ECG backend routes are connected and live (`/ecg/upload`, `/ecg/predict`)
+- README media references now reflect currently available screenshots/videos
 
 ### Why it stands out
 
@@ -28,10 +32,11 @@ Biomedical Signal Viewer unifies **acoustic, microbiome, market, EEG, and ECG wo
 | Acoustic | ✅ | ✅ | Ready |
 | Market | ✅ | ✅ | Ready |
 | Microbiome | ✅ | ✅ | Ready |
-| EEG | ⚠️ Placeholder page | ✅ | API ready |
-| ECG | ⚠️ Placeholder page | ⚠️ | Planned |
+| EEG | ✅ | ✅ | Ready |
+| ECG | ✅ | ✅ | Ready |
 
 ![Home Dashboard Screenshot](docs/media/screenshots/home-dashboard.png)
+> Shows the main navigation cards and entry points for all five modules, letting users jump directly to Acoustic, Market, Microbiome, EEG, or ECG workflows.
 
 🎬 **Watch Demo:** [Home Walkthrough](docs/media/videos/home-walkthrough.mp4)
 
@@ -52,7 +57,8 @@ FastAPI (Uvicorn)
    ├── Acoustic_Signals
    ├── Market
    ├── MicroBiome
-   └── EEG
+  ├── EEG
+  └── ECG
 ```
 
 Local endpoints:
@@ -76,8 +82,13 @@ End-to-end acoustic workflows:
 Outputs: waveform visualization, estimated coefficients, ML/DL confidence, and final threat label.
 
 ![Acoustic Overview](docs/media/screenshots/acoustic-overview.png)
+> Shows the Acoustic module hub with feature cards for Doppler Simulation, Doppler Estimation, and Submarine Detection, plus section-based in-page navigation.
+
 ![Doppler Simulation](docs/media/screenshots/acoustic-doppler-sim.png)
+> Shows Doppler signal generation inputs (motion/frequency settings) and the produced waveform output used to inspect simulated pass-by behavior.
+
 ![Submarine Detection](docs/media/screenshots/acoustic-submarine-detection.png)
+> Shows audio upload-driven submarine classification with model confidence values and final detection label for threat interpretation.
 
 🎬 **Watch Demo:** [Acoustic Demo](docs/media/videos/acoustic-demo.mp4)
 
@@ -95,8 +106,13 @@ Two quantitative dashboards:
   - Relative performance, seasonality, crossover analysis
 
 ![Market Intro](docs/media/screenshots/market-intro.png)
+> Shows market analysis setup controls where users choose files/assets and configure parameters before running single-asset or comparative analysis.
+
 ![Market Analysis](docs/media/screenshots/market-analysis.png)
+> Shows single-asset outputs including OHLC/candlestick view, moving-average overlays, Bollinger bands, volatility context, and forecast segment.
+
 ![Market Comparison](docs/media/screenshots/market-compare.png)
+> Shows pairwise market comparison with relative trend behavior, crossover relationships, and seasonality-oriented comparison visuals.
 
 🎬 **Watch Demo:** [Market Demo](docs/media/videos/market-demo.mp4)
 
@@ -117,7 +133,10 @@ Core insights:
 - PCA trajectory with stability insights
 
 ![Microbiome Dashboard](docs/media/screenshots/microbiome1.png)
+> Shows core microbiome analytics: taxa composition over time, dominant bacteria distribution, and timeline-based community pattern changes.
+
 ![Microbiome Clinical Panel](docs/media/screenshots/microbiome-clinical.png)
+> Shows clinical indicators and interpretive features such as inflammation markers, diversity/stability signals, and health-oriented summary panels.
 
 🎬 **Watch Demo:** [Microbiome Demo](docs/media/videos/microbiome-demo.mp4)
 
@@ -125,32 +144,36 @@ Core insights:
   Your browser does not support the video tag.
 </video>
 
-### 4) EEG (`/eeg`) — API-ready, UI expansion pending
+### 4) EEG (`/eeg`) — Interactive dashboard + AI pipeline
 
-- UI page is currently placeholder.
-- API is active: `POST /EEG` (`.csv/.parquet`).
-- Response includes cleaned feature package + AI prediction dictionaries.
+- Interactive frontend includes intro, launch/upload flow, and multiple viewers (Continuous, Reoccurrence, Polar, XOR).
+- API supports analysis and prediction extraction: `POST /EEG` (`.csv/.parquet`).
+- Signal pagination endpoint is available: `GET /EEG/data/{file_id}` with `page` and `limit`.
+- Screenshot and demo clip are pending upload.
 
-![EEG Page](docs/media/screenshots/eeg-page.png)
+EEG feature highlights on the page:
 
-🎬 **Watch Demo:** [EEG Demo](docs/media/videos/eeg-demo.mp4)
+- Intro/launch step that starts analysis after successful file upload.
+- AI notification banner showing top detected class and confidence percentage.
+- Multi-view navigation via EEG navbar: Continuous, Reoccurrence, Polar, and XOR viewers.
+- Shared prediction dictionaries (ML + DL) passed to viewers for consistent interpretation.
+- Paginated signal retrieval pattern for large EEG files to keep UI responsive.
 
-<video controls width="100%" src="docs/media/videos/eeg-demo.mp4">
-  Your browser does not support the video tag.
-</video>
+### 5) ECG (`/ecg`) — Interactive diagnostics + model selection
 
-### 5) ECG (`/ecg`) — Placeholder today, roadmap target
+- Frontend supports upload, viewer navigation (ECG, XOR, Recurrence, Polar), and diagnosis display.
+- Backend routes are active under `/ecg`.
+- `POST /ecg/upload` parses and prepares ECG signal payloads.
+- `POST /ecg/predict` supports `pretrained` and `classical` model inference.
+- Screenshot and demo clip are pending upload.
 
-- UI page exists as placeholder.
-- Dedicated backend ECG pipeline is not connected yet.
+ECG feature highlights on the page:
 
-![ECG Page](docs/media/screenshots/ecg-page.png)
-
-🎬 **Watch Demo:** [ECG Demo](docs/media/videos/ecg-demo.mp4)
-
-<video controls width="100%" src="docs/media/videos/ecg-demo.mp4">
-  Your browser does not support the video tag.
-</video>
+- Hero + model cards for selecting `pretrained` or `classical` diagnosis mode.
+- Upload workspace for `.csv/.zip` ECG files with `Upload & Analyze` action.
+- `Run Diagnosis` flow that returns per-class probability outputs.
+- Quick-scroll cards to viewer sections: ECG Viewer, XOR Viewer, Recurrence Plot, Polar Viewer.
+- Unified visualization workspace where uploaded signal data is reused across all ECG viewers.
 
 ---
 
@@ -176,6 +199,12 @@ Fast endpoints, organized by domain:
 ### EEG
 
 - `POST /EEG` → extracted features + prediction dictionaries
+- `GET /EEG/data/{file_id}?page=&limit=` → paginated EEG time-series chunks
+
+### ECG
+
+- `POST /ecg/upload` → parsed ECG channels/metadata for visualization
+- `POST /ecg/predict` → model-based diagnosis probabilities (`pretrained` or `classical`)
 
 ---
 
@@ -234,7 +263,7 @@ npm run dev
 
 Next high-impact upgrades:
 
-- Complete EEG interactive frontend
-- Implement ECG backend + visualization flow
+- Add EEG and ECG screenshots/demo clips to media gallery
+- Improve model configuration via frontend environment variables
 - Add auth + analysis history
 - Add API/UI automated tests

@@ -17,6 +17,7 @@ xgboost==1.5.2
 statsmodels
 pyarrow
 fastparquet
-imbalanced-learn
+scikit-learn==1.6.1
+imbalanced-learn>=0.14.0
 torchvision
 opencv-python

@@ -2,7 +2,6 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
 from app.ECG.schemas.schema import ECGResponse, PredictionResponse
 from app.ECG.services.service import (
-    is_classical_available,
     is_pretrained_available,
     parse_ecg,
     predict_ecg,
@@ -26,12 +25,6 @@ async def predict(file: UploadFile = File(...), model: str = Form(...)):
         raise HTTPException(
             status_code=503,
             detail="Pretrained ECG model is unavailable (missing ONNX artifacts).",
-        )
-
-    if model == "classical" and not is_classical_available():
-        raise HTTPException(
-            status_code=503,
-            detail="Classical ECG model is unavailable (failed to load model dependencies/artifacts).",
         )
 
     data = await parse_ecg(file)

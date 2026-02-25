@@ -49,12 +49,27 @@ except Exception as error:
     print(f"Failed to load AI model: {error}")
 
 classic_model = None
+classic_model_load_error = None
 
-try:
-    classic_model = joblib.load(classic_model_path)
-    print("Classical Random Forest model loaded")
-except Exception as error:
-    print(f"Failed to load classical model: {error}")
+
+def _load_classical_model():
+    global classic_model
+    global classic_model_load_error
+
+    if classic_model is not None:
+        return True
+
+    try:
+        classic_model = joblib.load(classic_model_path)
+        classic_model_load_error = None
+        print("Classical Random Forest model loaded")
+        return True
+    except Exception as error:
+        classic_model_load_error = str(error)
+        print(f"Failed to load classical model: {error}")
+        return False
+
+_load_classical_model()
 
 
 def is_pretrained_available():
@@ -62,7 +77,7 @@ def is_pretrained_available():
 
 
 def is_classical_available():
-    return classic_model is not None
+    return _load_classical_model()
 
 
 def _normalized_prediction(values_by_label):
@@ -175,7 +190,7 @@ async def predict_ecg(parsed_data, model_type="pretrained"):
             return default_prediction
 
     if model_type == "classical":
-        if classic_model is None:
+        if not _load_classical_model():
             return default_prediction
 
         features = extract_features(signal)

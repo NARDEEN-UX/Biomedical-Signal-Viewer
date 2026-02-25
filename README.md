@@ -87,6 +87,9 @@ Outputs: waveform visualization, estimated coefficients, ML/DL confidence, and f
 ![Doppler Simulation](docs/media/screenshots/acoustic-doppler-sim.png)
 > Shows Doppler signal generation inputs (motion/frequency settings) and the produced waveform output used to inspect simulated pass-by behavior.
 
+![Velocity & Frequency Estimation](docs/media/screenshots/acoustic-velocity-frequency.png)
+> Shows the upload-driven Doppler estimation workspace with extracted `velocity` and `frequency` values plus the sampled signal preview returned from `POST /extract_coef`.
+
 ![Submarine Detection](docs/media/screenshots/acoustic-submarine-detection.png)
 > Shows audio upload-driven submarine classification with model confidence values and final detection label for threat interpretation.
 
@@ -149,7 +152,6 @@ Core insights:
 - Interactive frontend includes intro, launch/upload flow, and multiple viewers (Continuous, Reoccurrence, Polar, XOR).
 - API supports analysis and prediction extraction: `POST /EEG` (`.csv/.parquet`).
 - Signal pagination endpoint is available: `GET /EEG/data/{file_id}` with `page` and `limit`.
-- Screenshot and demo clip are pending upload.
 
 EEG feature highlights on the page:
 
@@ -159,13 +161,30 @@ EEG feature highlights on the page:
 - Shared prediction dictionaries (ML + DL) passed to viewers for consistent interpretation.
 - Paginated signal retrieval pattern for large EEG files to keep UI responsive.
 
+![EEG Intro & Continuous Workspace](docs/media/screenshots/EEG.png)
+> Shows the EEG launch workflow with active continuous signal visualization and analysis-ready workspace controls.
+
+![EEG XOR Viewer](docs/media/screenshots/XOREEG.png)
+> Shows XOR-based EEG visualization for comparing signal pattern differences across channels.
+
+![EEG Reoccurrence Viewer](docs/media/screenshots/recurrenceEEG.png)
+> Shows recurrence-plot EEG representation for identifying repeated structures and nonlinear dynamics.
+
+![EEG Polar Viewer](docs/media/screenshots/polarEEG.png)
+> Shows polar EEG representation to inspect cyclic and phase-oriented behavior across channels.
+
+🎬 **Watch Demo:** [EEG Demo](docs/media/videos/eeg-demo.mp4)
+
+<video controls width="100%" src="docs/media/videos/eeg-demo.mp4">
+  Your browser does not support the video tag.
+</video>
+
 ### 5) ECG (`/ecg`) — Interactive diagnostics + model selection
 
 - Frontend supports upload, viewer navigation (ECG, XOR, Recurrence, Polar), and diagnosis display.
 - Backend routes are active under `/ecg`.
 - `POST /ecg/upload` parses and prepares ECG signal payloads.
 - `POST /ecg/predict` supports `pretrained` and `classical` model inference.
-- Screenshot and demo clip are pending upload.
 
 ECG feature highlights on the page:
 
@@ -174,6 +193,30 @@ ECG feature highlights on the page:
 - `Run Diagnosis` flow that returns per-class probability outputs.
 - Quick-scroll cards to viewer sections: ECG Viewer, XOR Viewer, Recurrence Plot, Polar Viewer.
 - Unified visualization workspace where uploaded signal data is reused across all ECG viewers.
+
+![ECG Model Selection](docs/media/screenshots/ecg-model-selection.png)
+> Shows diagnosis mode selection between pretrained and classical workflows before running inference.
+
+![ECG Diagnosis Results](docs/media/screenshots/ecg-diagnosis-results.png)
+> Shows per-class diagnosis probabilities returned by the selected model after running analysis.
+
+![ECG Main Viewer](docs/media/screenshots/ECG.png)
+> Shows the main ECG waveform viewer used to inspect channel behavior and baseline rhythm structure.
+
+![ECG XOR Viewer](docs/media/screenshots/XOR.png)
+> Shows XOR-based ECG visualization for emphasizing contrast patterns and transitions across signal segments.
+
+![ECG Recurrence Viewer](docs/media/screenshots/recurrence.png)
+> Shows recurrence-plot representation for identifying repeating dynamics and structural rhythm motifs.
+
+![ECG Polar Viewer](docs/media/screenshots/polar.png)
+> Shows polar ECG representation for circular pattern analysis of periodic behavior.
+
+🎬 **Watch Demo:** [ECG Demo](docs/media/videos/ecg-demo.mp4)
+
+<video controls width="100%" src="docs/media/videos/ecg-demo.mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
